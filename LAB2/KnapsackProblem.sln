@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnapsackProblem", "KnapsackProblem\KnapsackProblem.csproj", "{2D72AF33-4837-4DE3-AE9C-7953DF9A0038}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{0516CDA4-5290-4D14-AAF9-4E5F0483695F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnapsackProblemWindowApp", "KnapsackProblemWindowApp\KnapsackProblemWindowApp.csproj", "{A32D5116-559E-4085-90C2-680FF81EB02F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2D72AF33-4837-4DE3-AE9C-7953DF9A0038}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D72AF33-4837-4DE3-AE9C-7953DF9A0038}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D72AF33-4837-4DE3-AE9C-7953DF9A0038}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D72AF33-4837-4DE3-AE9C-7953DF9A0038}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0516CDA4-5290-4D14-AAF9-4E5F0483695F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0516CDA4-5290-4D14-AAF9-4E5F0483695F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0516CDA4-5290-4D14-AAF9-4E5F0483695F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0516CDA4-5290-4D14-AAF9-4E5F0483695F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A32D5116-559E-4085-90C2-680FF81EB02F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A32D5116-559E-4085-90C2-680FF81EB02F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A32D5116-559E-4085-90C2-680FF81EB02F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A32D5116-559E-4085-90C2-680FF81EB02F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
