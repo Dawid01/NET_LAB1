@@ -17,7 +17,7 @@ namespace KnapsackProblem
 
         public override string ToString()
         {
-            string result = "RESULT: total weight: " + totalWeight + " total value: " + totalValue + "\n";
+            string result = "RESULT: \nTotal weight: " + totalWeight + "\nTotal value: " + totalValue + "\n";
             for (int i = 0; i < items.Count; i++)
             {
                 Item item = items[i];

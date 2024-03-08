@@ -15,7 +15,7 @@
 
         public override string ToString()
         {
-            return "v:" + value + "     w:" + weight + "    r:" + ratio;
+            return "v:" + value + "     w:" + weight;
         }
     }
 }
