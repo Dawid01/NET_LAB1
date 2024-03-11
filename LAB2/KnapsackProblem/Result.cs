@@ -6,7 +6,7 @@ namespace KnapsackProblem
     {
         public int totalWeight;
         public int totalValue;
-        private List<Item> items;
+        public List<Item> items;
 
         public Result(int totalWeight, int totalValue, List<Item> items)
         {
