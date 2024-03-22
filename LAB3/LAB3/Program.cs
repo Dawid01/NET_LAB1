@@ -6,15 +6,13 @@ class Program
 {
     static void Main()
     {
-        ClientAPI client = ClientAPI.Instance();
-        client.Call("/instruction/students.json",
-            OnSuccessful: async response =>
+        ClientAPI client = ClientAPI.Instance;
+        client.Call<List<Student>>("/instruction/students.json",
+            OnSuccessful: async (body, response) =>
             {
                 if (response.IsSuccessStatusCode)
                 {
-                    response.EnsureSuccessStatusCode();
-                    string responseBody = await response.Content.ReadAsStringAsync();
-                    List<Student> students = JsonSerializer.Deserialize<List<Student>>(responseBody);
+                    List<Student> students = body;
                     for (int i = 0; i < students.Count; i++)
                     {
                         Console.WriteLine(students[i]);
