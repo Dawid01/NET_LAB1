@@ -7,15 +7,14 @@ class Program
     static void Main()
     {
         ClientAPI client = ClientAPI.Instance;
-        client.Call<List<Student>>("/instruction/students.json",
+        client.Call<List<Game>>("/games",
             OnSuccessful: async (body, response) =>
             {
                 if (response.IsSuccessStatusCode)
                 {
-                    List<Student> students = body;
-                    for (int i = 0; i < students.Count; i++)
+                    for (int i = 0; i < body.Count; i++)
                     {
-                        Console.WriteLine(students[i]);
+                        Console.WriteLine(body[i]);
                     }
                 }
                 else
@@ -27,6 +26,24 @@ class Program
             {
                 Console.WriteLine("Conection failure");
             }).Wait();
+        
+        /*client.Call<Game>("/game?id=452",
+            OnSuccessful: async (body, response) =>
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine(body);
+                }
+                else
+                {
+                    Console.WriteLine("RESPONSE CODE: " + response.StatusCode);
+                }
+            },
+            OnFailure: () =>
+            {
+                Console.WriteLine("Conection failure");
+            }).Wait();
+            */
     }
     
 }

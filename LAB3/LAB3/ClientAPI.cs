@@ -4,7 +4,7 @@ public class ClientAPI : Singleton<ClientAPI>
 {
     static readonly HttpClient client = new HttpClient();
 
-    private const string BASE_URL = "http://radoslaw.idzikowski.staff.iiar.pwr.wroc.pl";
+    private const string BASE_URL = "https://www.freetogame.com/api";
     
     public async Task Call<T>(string call, Action<T, HttpResponseMessage> OnSuccessful = null , Action OnFailure = null)
     {
