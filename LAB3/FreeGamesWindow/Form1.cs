@@ -30,7 +30,7 @@ public partial class Form1 : Form
         _gameAdapter = new GameAdapter(panelResults, vScrollBar);
         InitializeGameCategories();
         InitializePlatforms();
-        this.Size = new System.Drawing.Size(1150, 800);
+        this.Size = new System.Drawing.Size(1175, 800);
         this.FormBorderStyle = FormBorderStyle.FixedSingle;
         this.MaximizeBox = false;
         labelSelectedCount.Text = $"Selected: {_selectedCount}" + " / " + _gameCategories.Count;

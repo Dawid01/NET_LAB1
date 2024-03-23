@@ -102,11 +102,11 @@ public class GameAdapter
         gamePanel.Controls.Add(lblDeveloper);
 
         Label lblReleaseDate = new Label();
-        lblReleaseDate.Text = "Release Date: " + game.ReleaseDate;
+        lblReleaseDate.Text = game.ReleaseDate;
         lblReleaseDate.ForeColor = Color.White;
         lblReleaseDate.TextAlign = ContentAlignment.MiddleRight;
         lblReleaseDate.AutoSize = true;
-        lblReleaseDate.Location = new Point(858 - 150, 5); 
+        lblReleaseDate.Location = new Point(858 - 88, 5); 
         gamePanel.Controls.Add(lblReleaseDate);
 
         Button btnPlay = new Button();
@@ -149,7 +149,7 @@ public class GameAdapter
     private void UpdateScrollBar()
     {
         int totalHeight = _games.Count * (_itemHeight + 10);
-        _visibleItems = _panel.Height / (_itemHeight + 10);
+        _visibleItems = _panel.Height / (_itemHeight + 10) + 1;
         _scrollBar.Minimum = 0;
         _scrollBar.Maximum = totalHeight - _panel.Height + (_itemHeight + 10);
         _scrollBar.LargeChange = _visibleItems * (_itemHeight + 10);
