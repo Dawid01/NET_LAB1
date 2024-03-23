@@ -36,6 +36,8 @@
             this.labelResults = new System.Windows.Forms.Label();
             this.labelSelectedCount = new System.Windows.Forms.Label();
             this.labelPlatforms = new System.Windows.Forms.Label();
+            this.vScrollBar = new System.Windows.Forms.VScrollBar();  // <-- Dodany VScrollBar
+
 
             this.SuspendLayout();
             // 
@@ -93,6 +95,13 @@
             this.panelResults.Name = "panelResults";
             this.panelResults.Size = new System.Drawing.Size(760, 700);
             this.panelResults.TabIndex = 3;
+            this.vScrollBar.Dock = System.Windows.Forms.DockStyle.Right;
+            this.vScrollBar.LargeChange = 20;
+            this.vScrollBar.Location = new System.Drawing.Point(740, 0);
+            this.vScrollBar.Name = "vScrollBar1";
+            this.vScrollBar.Size = new System.Drawing.Size(20, 700);
+            this.vScrollBar.TabIndex = 0;
+            this.vScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vScrollBar_Scroll);
             // 
             // labelResults
             // 
@@ -159,6 +168,7 @@
         private System.Windows.Forms.Label labelResults;
         private System.Windows.Forms.Label labelSelectedCount;
         private System.Windows.Forms.Label labelPlatforms;
+        private System.Windows.Forms.VScrollBar vScrollBar;
 
 
     }
