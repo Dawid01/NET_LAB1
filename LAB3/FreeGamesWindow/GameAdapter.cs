@@ -45,7 +45,7 @@ public class GameAdapter
     {
         Panel gamePanel = new Panel();
         gamePanel.BackColor = Color.FromArgb(25, 25, 25);  
-        gamePanel.Size = new Size(858, 206);
+        gamePanel.Size = new Size(858, _itemHeight);
 
         PictureBox pictureBox = new PictureBox();
         pictureBox.Load(game.Thumbnail);
@@ -57,6 +57,7 @@ public class GameAdapter
         Label lblTitle = new Label();
         lblTitle.Text = game.Title;
         lblTitle.ForeColor = Color.White;
+        lblTitle.BackColor = Color.Transparent;
         lblTitle.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         lblTitle.AutoSize = true;
         lblTitle.Location = new Point(370, 5); 
@@ -69,7 +70,7 @@ public class GameAdapter
         lblDescription.Size = new Size(470, 50);
         lblDescription.MaximumSize = new Size(470, 50);
         //lblDescription.BorderStyle = BorderStyle.FixedSingle;
-        lblDescription.Location = new Point(370, 40);
+        lblDescription.Location = new Point(370, 60);
         gamePanel.Controls.Add(lblDescription);
 
         Label lblGenre = new Label();
@@ -90,21 +91,22 @@ public class GameAdapter
         lblPublisher.Text = "Publisher: " + game.Publisher;
         lblPublisher.ForeColor = Color.White;
         lblPublisher.AutoSize = true;
-        lblPublisher.Location = new Point(370, 210); 
+        lblPublisher.Location = new Point(370, 130); 
         gamePanel.Controls.Add(lblPublisher);
 
         Label lblDeveloper = new Label();
-        lblDeveloper.Text = "Developer: " + game.Developer;
+        lblDeveloper.Text = game.Developer;
         lblDeveloper.ForeColor = Color.White;
         lblDeveloper.AutoSize = true;
-        lblDeveloper.Location = new Point(370, 230); 
+        lblDeveloper.Location = new Point(370, 35); 
         gamePanel.Controls.Add(lblDeveloper);
 
         Label lblReleaseDate = new Label();
         lblReleaseDate.Text = "Release Date: " + game.ReleaseDate;
         lblReleaseDate.ForeColor = Color.White;
+        lblReleaseDate.TextAlign = ContentAlignment.MiddleRight;
         lblReleaseDate.AutoSize = true;
-        lblReleaseDate.Location = new Point(370, 250); 
+        lblReleaseDate.Location = new Point(858 - 150, 5); 
         gamePanel.Controls.Add(lblReleaseDate);
 
         Button btnPlay = new Button();

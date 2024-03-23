@@ -34,6 +34,16 @@ public partial class Form1 : Form
         this.FormBorderStyle = FormBorderStyle.FixedSingle;
         this.MaximizeBox = false;
         labelSelectedCount.Text = $"Selected: {_selectedCount}" + " / " + _gameCategories.Count;
+        var cancellationTokenSource = new CancellationTokenSource();
+        var cancellationToken = cancellationTokenSource.Token;
+        try
+        {
+            Search(cancellationToken);
+        }
+        catch (TaskCanceledException)
+        {
+            Console.WriteLine("Search was canceled.");
+        }
 
     }
 
@@ -68,7 +78,7 @@ public partial class Form1 : Form
     private void InitializePlatforms()
     {
         int xPos = 2;
-        int yPos = 570;
+        int yPos = 575;
 
         foreach (var platform in _platforms)
         {

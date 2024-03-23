@@ -95,13 +95,17 @@
             this.panelResults.Name = "panelResults";
             this.panelResults.Size = new System.Drawing.Size(760, 700);
             this.panelResults.TabIndex = 3;
+
             this.vScrollBar.Dock = System.Windows.Forms.DockStyle.Right;
             this.vScrollBar.LargeChange = 20;
             this.vScrollBar.Location = new System.Drawing.Point(740, 0);
             this.vScrollBar.Name = "vScrollBar1";
             this.vScrollBar.Size = new System.Drawing.Size(20, 700);
-            this.vScrollBar.TabIndex = 0;
+            this.vScrollBar.Minimum = 0;
+            this.vScrollBar.Maximum = this.panelResults.Height;
+            this.vScrollBar.LargeChange = this.panelResults.Height / 10;
             this.vScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vScrollBar_Scroll);
+
             // 
             // labelResults
             // 
@@ -119,7 +123,7 @@
             this.labelSelectedCount.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelSelectedCount.ForeColor = System.Drawing.Color.White;
             this.labelSelectedCount.BackColor = Color.Transparent;
-            this.labelSelectedCount.Location = new System.Drawing.Point(10, 450);
+            this.labelSelectedCount.Location = new System.Drawing.Point(10, 455);
             this.labelSelectedCount.Name = "labelSelectedCount";
             this.labelSelectedCount.Size = new System.Drawing.Size(200, 21);
             this.labelSelectedCount.Text = "Selected: 0";  
@@ -130,7 +134,7 @@
             this.labelPlatforms.AutoSize = true;
             this.labelPlatforms.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPlatforms.ForeColor = System.Drawing.Color.White;
-            this.labelPlatforms.Location = new System.Drawing.Point(10, 470);
+            this.labelPlatforms.Location = new System.Drawing.Point(10, 475);
             this.labelPlatforms.Name = "labelCategories";
             this.labelPlatforms.Size = new System.Drawing.Size(110, 21);
             this.labelPlatforms.Text = "PLATFORMS";
