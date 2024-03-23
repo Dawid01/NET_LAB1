@@ -27,7 +27,7 @@ public partial class Form1 : Form
     {
         _client = ClientAPI.Instance;
         InitializeComponent();
-        _gameAdapter = new GameAdapter(panelResults, vScrollBar);
+        _gameAdapter = new GameAdapter(panelResults);
         InitializeGameCategories();
         InitializePlatforms();
         this.Size = new System.Drawing.Size(1175, 800);
@@ -211,10 +211,4 @@ public partial class Form1 : Form
                 Console.WriteLine("Search was canceled.");
             }
         }
-        
-        private void vScrollBar_Scroll(object sender, ScrollEventArgs e)
-        {
-            panelResults.VerticalScroll.Value = vScrollBar.Value;
-        }
-    
 }

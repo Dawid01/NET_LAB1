@@ -36,7 +36,6 @@
             this.labelResults = new System.Windows.Forms.Label();
             this.labelSelectedCount = new System.Windows.Forms.Label();
             this.labelPlatforms = new System.Windows.Forms.Label();
-            this.vScrollBar = new System.Windows.Forms.VScrollBar();
 
 
             this.SuspendLayout();
@@ -93,19 +92,9 @@
             this.panelResults.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.panelResults.Location = new System.Drawing.Point(220, 50);
             this.panelResults.Name = "panelResults";
-            this.panelResults.Size = new System.Drawing.Size(760, 700);
+            this.panelResults.Size = new System.Drawing.Size(760, 600);
             this.panelResults.TabIndex = 3;
-
-            this.vScrollBar.Dock = System.Windows.Forms.DockStyle.Right;
-            this.vScrollBar.LargeChange = 20;
-            this.vScrollBar.Location = new System.Drawing.Point(740, 0);
-            this.vScrollBar.Name = "vScrollBar";
-            this.vScrollBar.Size = new System.Drawing.Size(20, 700);
-            this.vScrollBar.Minimum = 0;
-            this.vScrollBar.Maximum = this.panelResults.Height;
-            this.vScrollBar.LargeChange = this.panelResults.Height / 10;
-            this.vScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vScrollBar_Scroll);
-            this.Controls.Add(this.vScrollBar);
+            this.panelResults.AutoScroll = true;
 
 
             // 
@@ -174,8 +163,6 @@
         private System.Windows.Forms.Label labelResults;
         private System.Windows.Forms.Label labelSelectedCount;
         private System.Windows.Forms.Label labelPlatforms;
-        private System.Windows.Forms.VScrollBar vScrollBar;
-
 
     }
 }
