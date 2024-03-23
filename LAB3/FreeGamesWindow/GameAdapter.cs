@@ -166,7 +166,7 @@ namespace FreeGamesWindow
                 _startIndex -= _loadIncrement;
                 if (_startIndex < 0) _startIndex = 0;
                 LoadVisibleGames();
-                _panel.VerticalScroll.Value = _panel.VerticalScroll.Maximum - _panel.Height; // Ustawienie wartości pionowego przewijania na niemal maksymalną wartość
+                _panel.VerticalScroll.Value = _panel.VerticalScroll.Maximum - _panel.Height; 
             }
         }
 
