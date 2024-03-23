@@ -34,6 +34,7 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.panelResults = new System.Windows.Forms.Panel();
             this.labelResults = new System.Windows.Forms.Label();
+            this.labelSelectedCount = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelCategories
@@ -58,26 +59,28 @@
             // btnClearSelected
             // 
             this.btnClearSelected.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnClearSelected.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClearSelected.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClearSelected.ForeColor = System.Drawing.Color.White;
-            this.btnClearSelected.Location = new System.Drawing.Point(10, 460);
+            this.btnClearSelected.Location = new System.Drawing.Point(10, 460 + 80);
             this.btnClearSelected.Name = "btnClearSelected";
             this.btnClearSelected.Size = new System.Drawing.Size(200, 40);
             this.btnClearSelected.TabIndex = 1;
-            this.btnClearSelected.Text = "Clear";
+            this.btnClearSelected.Text = "CLEAR";
             this.btnClearSelected.UseVisualStyleBackColor = false;
-            this.btnClearSelected.Click += new System.EventHandler(this.btnSearch_Click);
+            this.btnClearSelected.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnSearch
             // 
             this.btnSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnSearch.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(10, 460 + 50);
+            this.btnSearch.Location = new System.Drawing.Point(10, 510 + 80);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(200, 40);
             this.btnSearch.TabIndex = 2;
-            this.btnSearch.Text = "Search";
+            this.btnSearch.Text = "SEARCH";
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
@@ -98,6 +101,19 @@
             this.labelResults.Name = "labelResults";
             this.labelResults.Size = new System.Drawing.Size(81, 21);
             this.labelResults.Text = "RESULTS";
+            // 
+            // labelSelectedCount
+            // 
+            this.labelSelectedCount.AutoSize = true;
+            this.labelSelectedCount.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSelectedCount.ForeColor = System.Drawing.Color.White;
+            this.labelSelectedCount.BackColor = Color.Transparent;
+            this.labelSelectedCount.Location = new System.Drawing.Point(10, 450);
+            this.labelSelectedCount.Name = "labelSelectedCount";
+            this.labelSelectedCount.Size = new System.Drawing.Size(200, 21);
+            this.labelSelectedCount.Text = "Selected: 0";  
+            this.Controls.Add(this.labelSelectedCount);
+
             // 
             // Form1
             // 
@@ -128,5 +144,7 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Panel panelResults;
         private System.Windows.Forms.Label labelResults;
+        private System.Windows.Forms.Label labelSelectedCount;
+
     }
 }
