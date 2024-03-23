@@ -17,7 +17,7 @@ public partial class Form1 : Form
         "action-rpg", "action", "military", "martial-arts", "flight", "low-spec",
         "tower-defense", "horror", "mmorts"
     };
-    private List<string> _platforms = new List<string> { "PC", "BROWSE" };
+    private List<string> _platforms = new List<string> { "PC", "BROWSER" };
 
     private List<CheckBox> _checkBoxes = new List<CheckBox>();
     private List<CheckBox> _platformCheckBoxes = new List<CheckBox>();
@@ -43,7 +43,8 @@ public partial class Form1 : Form
         foreach (var category in _gameCategories)
         {
             CheckBox cb = new CheckBox();
-            cb.Text = category;
+            cb.TextAlign = ContentAlignment.MiddleLeft;
+            cb.Text = category.ToUpper();
             cb.AutoSize = true;
             cb.ForeColor = System.Drawing.Color.White;
             cb.FlatStyle = FlatStyle.Flat;
@@ -64,8 +65,8 @@ public partial class Form1 : Form
     
     private void InitializePlatforms()
     {
-        int xPos = 15;
-        int yPos = 550;
+        int xPos = 2;
+        int yPos = 570;
 
         foreach (var platform in _platforms)
         {
@@ -75,9 +76,10 @@ public partial class Form1 : Form
             cb.ForeColor = System.Drawing.Color.White;
             cb.FlatStyle = FlatStyle.Flat;
             cb.AutoSize = false;
-            cb.Size = new System.Drawing.Size(211, 25);
-            //cb.BackColor = System.Drawing.Color.FromArgb(64, 64, 64);
-            cb.BackColor = System.Drawing.Color.Transparent;
+            cb.Padding = new Padding(15, 0, 0, 0);
+            cb.Size = new System.Drawing.Size(252, 25);
+            cb.BackColor = System.Drawing.Color.FromArgb(64, 64, 64);
+            //cb.BackColor = System.Drawing.Color.Transparent;
             cb.Location = new System.Drawing.Point(xPos, yPos);
             yPos += 30;
 
@@ -116,7 +118,7 @@ public partial class Form1 : Form
         }
         else
         {   
-            cb.BackColor = System.Drawing.Color.Transparent;
+            cb.BackColor = System.Drawing.Color.FromArgb(64, 64, 64);
         }
 
         labelSelectedCount.Text = $"Selected: {_selectedCount}" + " / " + _gameCategories.Count;

@@ -35,6 +35,8 @@
             this.panelResults = new System.Windows.Forms.Panel();
             this.labelResults = new System.Windows.Forms.Label();
             this.labelSelectedCount = new System.Windows.Forms.Label();
+            this.labelPlatforms = new System.Windows.Forms.Label();
+
             this.SuspendLayout();
             // 
             // labelCategories
@@ -62,7 +64,7 @@
             this.btnClearSelected.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClearSelected.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClearSelected.ForeColor = System.Drawing.Color.White;
-            this.btnClearSelected.Location = new System.Drawing.Point(10, 460 + 80);
+            this.btnClearSelected.Location = new System.Drawing.Point(10, 460 + 100);
             this.btnClearSelected.Name = "btnClearSelected";
             this.btnClearSelected.Size = new System.Drawing.Size(200, 40);
             this.btnClearSelected.TabIndex = 1;
@@ -76,7 +78,7 @@
             this.btnSearch.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(10, 510 + 80);
+            this.btnSearch.Location = new System.Drawing.Point(10, 510 + 100);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(200, 40);
             this.btnSearch.TabIndex = 2;
@@ -113,6 +115,17 @@
             this.labelSelectedCount.Size = new System.Drawing.Size(200, 21);
             this.labelSelectedCount.Text = "Selected: 0";  
             this.Controls.Add(this.labelSelectedCount);
+            // 
+            // labelPlatforms
+            // 
+            this.labelPlatforms.AutoSize = true;
+            this.labelPlatforms.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPlatforms.ForeColor = System.Drawing.Color.White;
+            this.labelPlatforms.Location = new System.Drawing.Point(10, 470);
+            this.labelPlatforms.Name = "labelCategories";
+            this.labelPlatforms.Size = new System.Drawing.Size(110, 21);
+            this.labelPlatforms.Text = "PLATFORMS";
+            this.Controls.Add(this.labelPlatforms);
 
             // 
             // Form1
@@ -145,6 +158,8 @@
         private System.Windows.Forms.Panel panelResults;
         private System.Windows.Forms.Label labelResults;
         private System.Windows.Forms.Label labelSelectedCount;
+        private System.Windows.Forms.Label labelPlatforms;
+
 
     }
 }
