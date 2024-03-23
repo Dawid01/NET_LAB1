@@ -211,40 +211,50 @@ public partial class Form1 : Form
 
         foreach (var game in games)
         {
+            Panel gamePanel = new Panel();
+            gamePanel.BackColor = Color.FromArgb(25, 25, 25);  
+            gamePanel.Size = new Size(760, 206);
+            gamePanel.Location = new Point(xPos, yPos);
+            panelResults.Controls.Add(gamePanel);
+
             PictureBox pictureBox = new PictureBox();
             pictureBox.Load(game.Thumbnail);
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox.Size = new Size(365, 206);
-            pictureBox.Location = new Point(xPos, yPos);
-            panelResults.Controls.Add(pictureBox);
+            pictureBox.Location = new Point(0, 0);  
+            gamePanel.Controls.Add(pictureBox);
 
             Label lblTitle = new Label();
             lblTitle.Text = game.Title;
             lblTitle.ForeColor = Color.White;
+            lblTitle.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             lblTitle.AutoSize = true;
-            lblTitle.Location = new Point(xPos + 110, yPos);
-            panelResults.Controls.Add(lblTitle);
+            lblTitle.Location = new Point(370, 10); 
+            gamePanel.Controls.Add(lblTitle);
 
             Label lblDescription = new Label();
             lblDescription.Text = game.ShortDescription;
             lblDescription.ForeColor = Color.Gray;
-            lblDescription.AutoSize = true;
-            lblDescription.Location = new Point(xPos + 110, yPos + 30);
-            panelResults.Controls.Add(lblDescription);
+            lblDescription.AutoSize = false;
+            lblDescription.Size = new Size(365, 150);
+            lblDescription.MaximumSize = new Size(340, 100);
+            lblDescription.BorderStyle = BorderStyle.FixedSingle;
+            lblDescription.Location = new Point(370, 40);
+            gamePanel.Controls.Add(lblDescription);
 
             Label lblGenre = new Label();
             lblGenre.Text = "Genre: " + game.Genre;
             lblGenre.ForeColor = Color.White;
             lblGenre.AutoSize = true;
-            lblGenre.Location = new Point(xPos + 110, yPos + 60);
-            panelResults.Controls.Add(lblGenre);
+            lblGenre.Location = new Point(370, 70);  
+            gamePanel.Controls.Add(lblGenre);
 
             Label lblPlatform = new Label();
             lblPlatform.Text = "Platform: " + game.Platform;
             lblPlatform.ForeColor = Color.White;
             lblPlatform.AutoSize = true;
-            lblPlatform.Location = new Point(xPos + 110, yPos + 90);
-            panelResults.Controls.Add(lblPlatform);
+            lblPlatform.Location = new Point(370, 180); 
+            gamePanel.Controls.Add(lblPlatform);
 
             yPos += 206 + 10;
             contentHeight = yPos;
@@ -256,5 +266,73 @@ public partial class Form1 : Form
         panelResults.Controls.Add(vScrollBar);
         panelResults.AutoScroll = false;
         panelResults.VerticalScroll.Visible = false;
+    }
+
+
+    public class GameAdapter
+    {
+        private Panel _panel;
+
+        public GameAdapter(Panel panel)
+        {
+            _panel = panel;
+        }
+
+        public void LoadGames(List<Game> games)
+        {
+            _panel.Controls.Clear();
+
+            int yPos = 10;
+            foreach (var game in games)
+            {
+                var gamePanel = CreateGamePanel(game);
+                gamePanel.Location = new Point(10, yPos);
+                _panel.Controls.Add(gamePanel);
+
+                yPos += gamePanel.Height + 10;
+            }
+        }
+
+        private Panel CreateGamePanel(Game game)
+        {
+            Panel panel = new Panel();
+            panel.Size = new Size(750, 206);
+            panel.BackColor = Color.FromArgb(64, 64, 64);
+
+            PictureBox pictureBox = new PictureBox();
+            pictureBox.Load(game.Thumbnail);
+            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox.Size = new Size(365, 206);
+            pictureBox.Location = new Point(0, 0);
+            panel.Controls.Add(pictureBox);
+
+            Label lblTitle = CreateLabel(game.Title, new Point(370, 0), Color.White, true);
+            panel.Controls.Add(lblTitle);
+
+            Label lblDescription = CreateLabel(game.ShortDescription, new Point(370, 40), Color.Gray, false);
+            lblDescription.Size = new Size(365, 150);
+            lblDescription.MaximumSize = new Size(365, 0);
+            lblDescription.BorderStyle = BorderStyle.FixedSingle;
+            panel.Controls.Add(lblDescription);
+
+            Label lblGenre = CreateLabel("Genre: " + game.Genre, new Point(370, 190), Color.White, true);
+            panel.Controls.Add(lblGenre);
+
+            Label lblPlatform = CreateLabel("Platform: " + game.Platform, new Point(370, 215), Color.White, true);
+            panel.Controls.Add(lblPlatform);
+
+            return panel;
+        }
+
+        private Label CreateLabel(string text, Point location, Color color, bool autoSize)
+        {
+            Label label = new Label();
+            label.Text = text;
+            label.ForeColor = color;
+            label.Location = location;
+            label.AutoSize = autoSize;
+
+            return label;
+        }
     }
 }
