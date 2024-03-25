@@ -14,7 +14,8 @@ namespace FreeGamesWindow
         private int _itemHeight = 206;
         private int _visibleItems = 0;
         private int _startIndex = 0;
-        private int _loadIncrement = 20; 
+        private int _loadIncrement = 20;
+        private int _pageIndex = 0;
 
         public GameAdapter(Panel panel)
         {
@@ -27,6 +28,7 @@ namespace FreeGamesWindow
         public void LoadGames(List<Game> games)
         {
             _games = games;
+            _panel.VerticalScroll.Value = 0;
             UpdateScrollBar();
             LoadVisibleGames();
         }
@@ -34,7 +36,6 @@ namespace FreeGamesWindow
         private void LoadVisibleGames()
         {
             _panel.Controls.Clear();
-
             int yPos = 10;
             for (int i = _startIndex; i < _startIndex + _visibleItems && i < _games.Count; i++)
             {
@@ -126,9 +127,12 @@ namespace FreeGamesWindow
             }
             else if (currentScrollPosition == _panel.VerticalScroll.Minimum)
             {
-                _startIndex -= _loadIncrement;
-                if (_startIndex < 0) _startIndex = 0;
-                LoadVisibleGames();
+                if (_startIndex > 0)
+                {
+                    _startIndex -= _loadIncrement;
+                    if (_startIndex < 0) _startIndex = 0;
+                    LoadVisibleGames();
+                }
             }
         }
 

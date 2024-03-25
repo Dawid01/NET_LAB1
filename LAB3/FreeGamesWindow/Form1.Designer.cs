@@ -28,128 +28,128 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelCategories = new System.Windows.Forms.Label();
-            this.panelCategories = new System.Windows.Forms.Panel();
-            this.btnClearSelected = new System.Windows.Forms.Button();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.panelResults = new System.Windows.Forms.Panel();
-            this.labelResults = new System.Windows.Forms.Label();
-            this.labelSelectedCount = new System.Windows.Forms.Label();
-            this.labelPlatforms = new System.Windows.Forms.Label();
+            labelCategories = new System.Windows.Forms.Label();
+            panelCategories = new System.Windows.Forms.Panel();
+            btnClearSelected = new System.Windows.Forms.Button();
+            btnSearch = new System.Windows.Forms.Button();
+            panelResults = new System.Windows.Forms.Panel();
+            labelResults = new System.Windows.Forms.Label();
+            labelSelectedCount = new System.Windows.Forms.Label();
+            labelPlatforms = new System.Windows.Forms.Label();
 
 
-            this.SuspendLayout();
+            SuspendLayout();
             // 
             // labelCategories
             // 
-            this.labelCategories.AutoSize = true;
-            this.labelCategories.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCategories.ForeColor = System.Drawing.Color.White;
-            this.labelCategories.Location = new System.Drawing.Point(10, 20);
-            this.labelCategories.Name = "labelCategories";
-            this.labelCategories.Size = new System.Drawing.Size(110, 21);
-            this.labelCategories.Text = "CATEGORIES";
+            labelCategories.AutoSize = true;
+            labelCategories.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            labelCategories.ForeColor = System.Drawing.Color.White;
+            labelCategories.Location = new System.Drawing.Point(10, 20);
+            labelCategories.Name = "labelCategories";
+            labelCategories.Size = new System.Drawing.Size(110, 21);
+            labelCategories.Text = "CATEGORIES";
             // 
             // panelCategories
             // 
-            this.panelCategories.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panelCategories.Location = new System.Drawing.Point(10, 50);
-            this.panelCategories.Name = "panelCategories";
-            this.panelCategories.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelCategories.Size = new System.Drawing.Size(200, 400);
-            this.panelCategories.TabIndex = 0;
+            panelCategories.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            panelCategories.Location = new System.Drawing.Point(10, 50);
+            panelCategories.Name = "panelCategories";
+            panelCategories.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            panelCategories.Size = new System.Drawing.Size(200, 400);
+            panelCategories.TabIndex = 0;
             // 
             // btnClearSelected
             // 
-            this.btnClearSelected.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.btnClearSelected.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearSelected.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClearSelected.ForeColor = System.Drawing.Color.White;
-            this.btnClearSelected.Location = new System.Drawing.Point(10, 460 + 100);
-            this.btnClearSelected.Name = "btnClearSelected";
-            this.btnClearSelected.Size = new System.Drawing.Size(200, 40);
-            this.btnClearSelected.TabIndex = 1;
-            this.btnClearSelected.Text = "CLEAR";
-            this.btnClearSelected.UseVisualStyleBackColor = false;
-            this.btnClearSelected.Click += new System.EventHandler(this.btnClear_Click);
+            btnClearSelected.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            btnClearSelected.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            btnClearSelected.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnClearSelected.ForeColor = System.Drawing.Color.White;
+            btnClearSelected.Location = new System.Drawing.Point(10, 460 + 100);
+            btnClearSelected.Name = "btnClearSelected";
+            btnClearSelected.Size = new System.Drawing.Size(200, 40);
+            btnClearSelected.TabIndex = 1;
+            btnClearSelected.Text = "CLEAR";
+            btnClearSelected.UseVisualStyleBackColor = false;
+            btnClearSelected.Click += new System.EventHandler(btnClear_Click);
             // 
             // btnSearch
             // 
-            this.btnSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.btnSearch.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(10, 510 + 100);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(200, 40);
-            this.btnSearch.TabIndex = 2;
-            this.btnSearch.Text = "SEARCH";
-            this.btnSearch.UseVisualStyleBackColor = false;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            btnSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            btnSearch.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnSearch.ForeColor = System.Drawing.Color.White;
+            btnSearch.Location = new System.Drawing.Point(10, 510 + 100);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new System.Drawing.Size(200, 40);
+            btnSearch.TabIndex = 2;
+            btnSearch.Text = "SEARCH";
+            btnSearch.UseVisualStyleBackColor = false;
+            btnSearch.Click += new System.EventHandler(btnSearch_Click);
             // 
             // panelResults
             // 
-            this.panelResults.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panelResults.Location = new System.Drawing.Point(220, 50);
-            this.panelResults.Name = "panelResults";
-            this.panelResults.Size = new System.Drawing.Size(760, 600);
-            this.panelResults.TabIndex = 3;
-            this.panelResults.AutoScroll = true;
+            panelResults.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            panelResults.Location = new System.Drawing.Point(220, 50);
+            panelResults.Name = "panelResults";
+            panelResults.Size = new System.Drawing.Size(760, 600);
+            panelResults.TabIndex = 3;
+            panelResults.AutoScroll = true;
 
 
             // 
             // labelResults
             // 
-            this.labelResults.AutoSize = true;
-            this.labelResults.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelResults.ForeColor = System.Drawing.Color.White;
-            this.labelResults.Location = new System.Drawing.Point(220, 20);
-            this.labelResults.Name = "labelResults";
-            this.labelResults.Size = new System.Drawing.Size(81, 21);
-            this.labelResults.Text = "RESULTS";
+            labelResults.AutoSize = true;
+            labelResults.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            labelResults.ForeColor = System.Drawing.Color.White;
+            labelResults.Location = new System.Drawing.Point(220, 20);
+            labelResults.Name = "labelResults";
+            labelResults.Size = new System.Drawing.Size(81, 21);
+            labelResults.Text = "RESULTS";
             // 
             // labelSelectedCount
             // 
-            this.labelSelectedCount.AutoSize = true;
-            this.labelSelectedCount.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSelectedCount.ForeColor = System.Drawing.Color.White;
-            this.labelSelectedCount.BackColor = Color.Transparent;
-            this.labelSelectedCount.Location = new System.Drawing.Point(10, 455);
-            this.labelSelectedCount.Name = "labelSelectedCount";
-            this.labelSelectedCount.Size = new System.Drawing.Size(200, 21);
-            this.labelSelectedCount.Text = "Selected: 0";  
-            this.Controls.Add(this.labelSelectedCount);
+            labelSelectedCount.AutoSize = true;
+            labelSelectedCount.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            labelSelectedCount.ForeColor = System.Drawing.Color.White;
+            labelSelectedCount.BackColor = Color.Transparent;
+            labelSelectedCount.Location = new System.Drawing.Point(10, 455);
+            labelSelectedCount.Name = "labelSelectedCount";
+            labelSelectedCount.Size = new System.Drawing.Size(200, 21);
+            labelSelectedCount.Text = "Selected: 0";  
+            Controls.Add(labelSelectedCount);
             // 
             // labelPlatforms
             // 
-            this.labelPlatforms.AutoSize = true;
-            this.labelPlatforms.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPlatforms.ForeColor = System.Drawing.Color.White;
-            this.labelPlatforms.Location = new System.Drawing.Point(10, 475);
-            this.labelPlatforms.Name = "labelCategories";
-            this.labelPlatforms.Size = new System.Drawing.Size(110, 21);
-            this.labelPlatforms.Text = "PLATFORMS";
-            this.Controls.Add(this.labelPlatforms);
+            labelPlatforms.AutoSize = true;
+            labelPlatforms.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            labelPlatforms.ForeColor = System.Drawing.Color.White;
+            labelPlatforms.Location = new System.Drawing.Point(10, 475);
+            labelPlatforms.Name = "labelCategories";
+            labelPlatforms.Size = new System.Drawing.Size(110, 21);
+            labelPlatforms.Text = "PLATFORMS";
+            Controls.Add(labelPlatforms);
 
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.ClientSize = new System.Drawing.Size(1000, 800);
-            this.Controls.Add(this.labelResults);
-            this.Controls.Add(this.panelResults);
-            this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.btnClearSelected);
-            this.Controls.Add(this.panelCategories);
-            this.Controls.Add(this.labelCategories);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.Name = "Form1";
-            this.Text = "Free Games";
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            ClientSize = new System.Drawing.Size(1000, 800);
+            Controls.Add(labelResults);
+            Controls.Add(panelResults);
+            Controls.Add(btnSearch);
+            Controls.Add(btnClearSelected);
+            Controls.Add(panelCategories);
+            Controls.Add(labelCategories);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            Name = "Form1";
+            Text = "Free Games";
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
