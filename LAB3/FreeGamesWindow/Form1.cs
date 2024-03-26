@@ -181,7 +181,7 @@ public partial class Form1 : Form
 
                 if (selectedCategories.Count > 0)
                 {
-                    query += "?category=" + string.Join(",", selectedCategories);
+                    query += "?category=" + string.Join("&category=", selectedCategories);
                 }
             }
 
