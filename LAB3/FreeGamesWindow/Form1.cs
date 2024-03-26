@@ -185,6 +185,15 @@ public partial class Form1 : Form
                 }
             }
 
+            bool pc = _platformCheckBoxes[0].Checked;
+            bool browser = _platformCheckBoxes[1].Checked;
+
+            if (!(pc && browser || !pc && !browser))
+            {
+                query += (_selectedCount>0 ? "&" : "?") + "platform=" + (pc ? "pc" : "browser");
+
+            }
+
             try
             {
                 await _client.Call<List<Game>>(
