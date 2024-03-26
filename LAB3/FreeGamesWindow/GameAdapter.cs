@@ -30,6 +30,8 @@ namespace FreeGamesWindow
 
         public void LoadGames(List<Game> games)
         {
+            _startIndex = 0;
+            _pageIndex = 0;
             _games = games;
             _panel.VerticalScroll.Value = 0;
             _pagesCount = games.Count > _pageSize ? games.Count / _pageSize : 1;
@@ -60,10 +62,12 @@ namespace FreeGamesWindow
 
             PictureBox pictureBox = new PictureBox();
             pictureBox.Load(game.Thumbnail);
+            //pictureBox.Load("https://www.freetogame.com/g/" + game.Id + "/videoplayback.webm");
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox.Size = new Size(365, 206);
             pictureBox.Location = new Point(0, 0);
             gamePanel.Controls.Add(pictureBox);
+            
 
             Label lblTitle = CreateLabel(game.Title, new Point(370, 5), Color.White, true, new Size(470, 50), ContentAlignment.TopLeft);
             lblTitle.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
