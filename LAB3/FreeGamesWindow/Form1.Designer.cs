@@ -36,6 +36,7 @@
             labelResults = new System.Windows.Forms.Label();
             labelSelectedCount = new System.Windows.Forms.Label();
             labelPlatforms = new System.Windows.Forms.Label();
+            labelPageInfo = new System.Windows.Forms.Label();
 
 
             SuspendLayout();
@@ -150,6 +151,17 @@
             Text = "Free Games";
             ResumeLayout(false);
             PerformLayout();
+            // 
+            // labelResults
+            // 
+            labelPageInfo.AutoSize = true;
+            labelPageInfo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            labelPageInfo.ForeColor = System.Drawing.Color.White;
+            labelPageInfo.Location = new System.Drawing.Point(180 + panelResults.Width, 20);
+            labelPageInfo.Name = "labelResults";
+            labelPageInfo.Size = new System.Drawing.Size(81, 21);
+            labelPageInfo.Text = "PAGE 0/0";
+            Controls.Add(labelPageInfo);
 
         }
 
@@ -163,6 +175,7 @@
         private System.Windows.Forms.Label labelResults;
         private System.Windows.Forms.Label labelSelectedCount;
         private System.Windows.Forms.Label labelPlatforms;
+        private System.Windows.Forms.Label labelPageInfo;
 
     }
 }

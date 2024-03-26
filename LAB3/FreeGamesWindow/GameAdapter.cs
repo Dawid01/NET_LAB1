@@ -10,16 +10,19 @@ namespace FreeGamesWindow
     public class GameAdapter
     {
         private Panel _panel;
+        private Label _pageLabelInfo;
         private List<Game> _games;
         private int _itemHeight = 206;
         private int _visibleItems = 0;
         private int _startIndex = 0;
-        private int _loadIncrement = 20;
+        private int _pageSize = 20;
         private int _pageIndex = 0;
+        private int _pagesCount;
 
-        public GameAdapter(Panel panel)
+        public GameAdapter(Panel panel, Label pageLabelInfo)
         {
             _panel = panel;
+            _pageLabelInfo = pageLabelInfo;
             _panel.AutoScroll = true;
             _panel.Scroll += Panel_Scroll;
             _panel.MouseWheel += Panel_MouseWheel;
@@ -29,12 +32,14 @@ namespace FreeGamesWindow
         {
             _games = games;
             _panel.VerticalScroll.Value = 0;
+            _pagesCount = games.Count / _pageSize;
             UpdateScrollBar();
             LoadVisibleGames();
         }
 
         private void LoadVisibleGames()
         {
+            _pageLabelInfo.Text = $"PAGE {_pageIndex + 1}/{_pagesCount}";
             _panel.Controls.Clear();
             int yPos = 10;
             for (int i = _startIndex; i < _startIndex + _visibleItems && i < _games.Count; i++)
@@ -122,14 +127,14 @@ namespace FreeGamesWindow
 
             if (currentScrollPosition >= maximumScrollValue)
             {
-                _startIndex += _loadIncrement;
+                _startIndex += _pageSize;
                 LoadVisibleGames();
             }
             else if (currentScrollPosition == _panel.VerticalScroll.Minimum)
             {
                 if (_startIndex > 0)
                 {
-                    _startIndex -= _loadIncrement;
+                    _startIndex -= _pageSize;
                     if (_startIndex < 0) _startIndex = 0;
                     LoadVisibleGames();
                 }
@@ -152,24 +157,27 @@ namespace FreeGamesWindow
             int currentScrollPosition = _panel.VerticalScroll.Value;
             int maximumScrollValue = _panel.VerticalScroll.Maximum - _panel.Height;
 
-            if (currentScrollPosition >= maximumScrollValue)
+            if (currentScrollPosition >= maximumScrollValue && _pageIndex < _pagesCount - 1)
             {
-                if (_startIndex + _loadIncrement < _games.Count)
+                if (_startIndex + _pageSize < _games.Count)
                 {
-                    _startIndex += _loadIncrement;
+                    _startIndex += _pageSize;
+                    _pageIndex++;
                     LoadVisibleGames();
                 }
                 else
                 {
                     _startIndex = _games.Count - _visibleItems;
+                    _pageIndex++;
                     LoadVisibleGames();
                 }
             }
-            else if (currentScrollPosition == _panel.VerticalScroll.Minimum)
+            else if (currentScrollPosition == _panel.VerticalScroll.Minimum && _pageIndex > 0)
             {
-                _startIndex -= _loadIncrement;
+                _startIndex -= _pageSize;
                 if (_startIndex < 0) _startIndex = 0;
                 LoadVisibleGames();
+                _pageIndex--;
                 _panel.VerticalScroll.Value = _panel.VerticalScroll.Maximum - _panel.Height; 
             }
         }
@@ -179,7 +187,7 @@ namespace FreeGamesWindow
         private void UpdateScrollBar()
         {
             int totalHeight = _games.Count * (_itemHeight + 10);
-            _visibleItems = _panel.Height / (_itemHeight + 10) + _loadIncrement;
+            _visibleItems = _panel.Height / (_itemHeight + 10) + _pageSize;
             _panel.VerticalScroll.Maximum = totalHeight;
         }
     }

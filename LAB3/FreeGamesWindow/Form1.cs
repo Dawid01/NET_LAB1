@@ -27,7 +27,7 @@ public partial class Form1 : Form
     {
         _client = ClientAPI.Instance;
         InitializeComponent();
-        _gameAdapter = new GameAdapter(panelResults);
+        _gameAdapter = new GameAdapter(panelResults, labelPageInfo);
         InitializeGameCategories();
         InitializePlatforms();
         this.Size = new System.Drawing.Size(1175, 800);
