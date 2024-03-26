@@ -32,7 +32,7 @@ namespace FreeGamesWindow
         {
             _games = games;
             _panel.VerticalScroll.Value = 0;
-            _pagesCount = games.Count / _pageSize;
+            _pagesCount = games.Count > _pageSize ? games.Count / _pageSize : 1;
             UpdateScrollBar();
             LoadVisibleGames();
         }
@@ -144,20 +144,23 @@ namespace FreeGamesWindow
         private void Panel_MouseWheel(object sender, MouseEventArgs e)
         {
             int scrollLines = SystemInformation.MouseWheelScrollLines;
-
+            int scrollValue = _panel.VerticalScroll.Value;
             if (e.Delta > 0 && _panel.VerticalScroll.Value - _panel.VerticalScroll.SmallChange >= _panel.VerticalScroll.Minimum)
             {
-                _panel.VerticalScroll.Value -= _panel.VerticalScroll.SmallChange * scrollLines;
+                scrollValue -= _panel.VerticalScroll.SmallChange * scrollLines;
             }
             else if (e.Delta < 0 && _panel.VerticalScroll.Value + _panel.VerticalScroll.SmallChange <= _panel.VerticalScroll.Maximum)
             {
-                _panel.VerticalScroll.Value += _panel.VerticalScroll.SmallChange * scrollLines;
+                scrollValue += _panel.VerticalScroll.SmallChange * scrollLines;
             }
+
+            scrollValue = Math.Clamp(scrollValue, _panel.VerticalScroll.Minimum, _panel.VerticalScroll.Maximum);
+            _panel.VerticalScroll.Value = scrollValue;
 
             int currentScrollPosition = _panel.VerticalScroll.Value;
             int maximumScrollValue = _panel.VerticalScroll.Maximum - _panel.Height;
 
-            if (currentScrollPosition >= maximumScrollValue && _pageIndex < _pagesCount - 1)
+            if (currentScrollPosition >= maximumScrollValue && _pageIndex < _pagesCount - 1 && _pagesCount > 1)
             {
                 if (_startIndex + _pageSize < _games.Count)
                 {
@@ -172,12 +175,12 @@ namespace FreeGamesWindow
                     LoadVisibleGames();
                 }
             }
-            else if (currentScrollPosition == _panel.VerticalScroll.Minimum && _pageIndex > 0)
+            else if (currentScrollPosition == _panel.VerticalScroll.Minimum && _pageIndex > 0 && _pagesCount > 1)
             {
                 _startIndex -= _pageSize;
                 if (_startIndex < 0) _startIndex = 0;
-                LoadVisibleGames();
                 _pageIndex--;
+                LoadVisibleGames();
                 _panel.VerticalScroll.Value = _panel.VerticalScroll.Maximum - _panel.Height; 
             }
         }

@@ -97,7 +97,7 @@ public partial class Form1 : Form
 
             cb.CheckedChanged += new System.EventHandler(this.platformCb_CheckedChanged);
             _platformCheckBoxes.Add(cb);
-            this.Controls.Add(cb); 
+            Controls.Add(cb); 
         }
     }
 

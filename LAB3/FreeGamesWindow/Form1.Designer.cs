@@ -157,9 +157,10 @@
             labelPageInfo.AutoSize = true;
             labelPageInfo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             labelPageInfo.ForeColor = System.Drawing.Color.White;
-            labelPageInfo.Location = new System.Drawing.Point(180 + panelResults.Width, 20);
+            labelPageInfo.Location = new System.Drawing.Point(165 + panelResults.Width, 20);
             labelPageInfo.Name = "labelResults";
-            labelPageInfo.Size = new System.Drawing.Size(81, 21);
+            labelPageInfo.TextAlign = ContentAlignment.MiddleRight;
+            labelPageInfo.Size = new System.Drawing.Size(100, 21);
             labelPageInfo.Text = "PAGE 0/0";
             Controls.Add(labelPageInfo);
 
