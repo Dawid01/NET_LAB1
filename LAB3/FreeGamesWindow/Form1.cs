@@ -9,7 +9,7 @@ public partial class Form1 : Form
     private int _selectedCount = 0;
     private GameAdapter _gameAdapter;
 
-    private List<string> _gameCategories = new List<string>
+    /*private List<string> _gameCategories = new List<string>
     {
         "mmorpg", "shooter", "strategy", "moba", "racing", "sports", "social", "sandbox",
         "open-world", "survival", "pvp", "pve", "pixel", "voxel", "zombie", "turn-based",
@@ -18,6 +18,12 @@ public partial class Form1 : Form
         "mmofps", "mmotps", "3d", "2d", "anime", "fantasy", "sci-fi", "fighting",
         "action-rpg", "action", "military", "martial-arts", "flight", "low-spec",
         "tower-defense", "horror", "mmorts"
+    };*/
+    private List<string> _gameCategories = new List<string>
+    {
+        "mmorpg", "shooter", "mmo", "social", "card",
+        "moba", "strategy", "fighting", "racing", "sports",
+        "fantasy", "battle royale", "action rpg", "action"
     };
     private List<string> _platforms = new List<string> { "PC", "BROWSER" };
 
@@ -45,6 +51,22 @@ public partial class Form1 : Form
         catch (TaskCanceledException)
         {
             Console.WriteLine("Search was canceled.");
+        }
+        
+        try
+        {
+            IQueryable<string> distinctGenres = _gamesDb.Games
+                .Select(g => g.Genre.ToLower())
+                .Distinct();
+
+            foreach (var genre in distinctGenres)
+            {
+                Console.WriteLine(genre);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An error occurred: {ex.Message}");
         }
     }
 
@@ -167,66 +189,33 @@ public partial class Form1 : Form
 
         private void Search()
         {
-            List<Game> games = _gamesDb.Games.ToList();
-
-            if (games.Count > 0)
-            {
-                _gameAdapter.LoadGames(games);
-            }
-
-            /*string query = "/games";
-
-            if (_selectedCount > 0)
+            try
             {
                 List<string> selectedCategories = new List<string>();
-                for (int i = 0; i < _categoryCheckBoxes.Count; i++)
+                for (int i = 0; i < _gameCategories.Count; i++)
                 {
                     if (_categoryCheckBoxes[i].Checked)
                     {
-                        selectedCategories.Add(_gameCategories[i]);
+                        selectedCategories.Add(_gameCategories[i].ToLower());
                     }
                 }
+                
+                IQueryable<Game> query = _gamesDb.Games.AsQueryable();
 
-                if (selectedCategories.Count > 0)
+                if (selectedCategories.Any())
                 {
-                    query += "?category=" + string.Join("&category=", selectedCategories);
+                    query = query.Where(g => selectedCategories.Contains(g.Genre.ToLower()));
                 }
+
+                List<Game> games = query.ToList();
+
+                _gameAdapter.LoadGames(games);
             }
-
-            bool pc = _platformCheckBoxes[0].Checked;
-            bool browser = _platformCheckBoxes[1].Checked;
-
-            if (!(pc && browser || !pc && !browser))
+            catch (Exception ex)
             {
-                query += (_selectedCount>0 ? "&" : "?") + "platform=" + (pc ? "pc" : "browser");
-
+                Console.WriteLine($"ERROR: {ex.Message}");
             }
-
-            try
-            {
-                await _client.Call<List<Game>>(
-                    query,
-                    OnSuccessful: async (body, response) =>
-                    {
-                        if (response.IsSuccessStatusCode)
-                        {
-                            _gameAdapter.LoadGames(body);
-                        }
-                        else
-                        {
-                            Console.WriteLine("RESPONSE CODE: " + response.StatusCode);
-                        }
-                    },
-                    OnFailure: () =>
-                    {
-                        Console.WriteLine("Connection failure");
-                    },
-                    cancellationToken: cancellationToken);
-            }
-            catch (TaskCanceledException)
-            {
-                Console.WriteLine("Search was canceled.");
-            }*/
+            
         }
 
         private async Task UpdateDatabase(CancellationToken cancellationToken)
@@ -264,5 +253,6 @@ public partial class Form1 : Form
             {
                 Console.WriteLine("Update was canceled.");
             }
+          
         }
 }
