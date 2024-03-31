@@ -7,6 +7,7 @@ class Program
     static void Main()
     {
         ClientAPI client = ClientAPI.Instance;
+        
         client.Call<List<Game>>("/games",
             OnSuccessful: async (body, response) =>
             {
@@ -26,24 +27,6 @@ class Program
             {
                 Console.WriteLine("Conection failure");
             }).Wait();
-        
-        /*client.Call<Game>("/game?id=452",
-            OnSuccessful: async (body, response) =>
-            {
-                if (response.IsSuccessStatusCode)
-                {
-                    Console.WriteLine(body);
-                }
-                else
-                {
-                    Console.WriteLine("RESPONSE CODE: " + response.StatusCode);
-                }
-            },
-            OnFailure: () =>
-            {
-                Console.WriteLine("Conection failure");
-            }).Wait();
-            */
     }
     
 }

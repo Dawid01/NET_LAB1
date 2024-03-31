@@ -5,6 +5,7 @@ namespace FreeGamesWindow;
 public partial class Form1 : Form
 {
     private ClientAPI _client;
+    private GamesDb _gamesDb;
     private int _selectedCount = 0;
     private GameAdapter _gameAdapter;
 
@@ -26,6 +27,7 @@ public partial class Form1 : Form
     public Form1()
     {
         _client = ClientAPI.Instance;
+        _gamesDb = new GamesDb();
         InitializeComponent();
         _gameAdapter = new GameAdapter(panelResults, labelPageInfo);
         InitializeGameCategories();
@@ -38,13 +40,12 @@ public partial class Form1 : Form
         var cancellationToken = cancellationTokenSource.Token;
         try
         {
-            Search(cancellationToken);
+            UpdateDatabase(cancellationToken);
         }
         catch (TaskCanceledException)
         {
             Console.WriteLine("Search was canceled.");
         }
-
     }
 
     private void InitializeGameCategories()
@@ -143,7 +144,7 @@ public partial class Form1 : Form
 
             try
             {
-                await Search(cancellationToken);
+                await UpdateDatabase(cancellationToken);
             }
             catch (TaskCanceledException)
             {
@@ -164,9 +165,16 @@ public partial class Form1 : Form
             }
         }
 
-        private async Task Search(CancellationToken cancellationToken)
+        private void Search()
         {
-            string query = "/games";
+            List<Game> games = _gamesDb.Games.ToList();
+
+            if (games.Count > 0)
+            {
+                _gameAdapter.LoadGames(games);
+            }
+
+            /*string query = "/games";
 
             if (_selectedCount > 0)
             {
@@ -218,6 +226,43 @@ public partial class Form1 : Form
             catch (TaskCanceledException)
             {
                 Console.WriteLine("Search was canceled.");
+            }*/
+        }
+
+        private async Task UpdateDatabase(CancellationToken cancellationToken)
+        {
+            string query = "/games";
+            try
+            {
+                await _client.Call<List<Game>>(
+                    query,
+                    OnSuccessful: async (body, response) =>
+                    {
+                        if (response.IsSuccessStatusCode)
+                        {
+                            foreach (var game in body)
+                            {
+                                var existingGame = _gamesDb.Games.FirstOrDefault(g => g.Id == game.Id);
+                                if (existingGame == null)
+                                {
+                                    _gamesDb.Games.Add(game);
+                                }
+                            }
+
+                            _gamesDb.SaveChanges();
+                            Search();
+                        }
+                        else
+                        {
+                            Console.WriteLine("RESPONSE CODE: " + response.StatusCode);
+                        }
+                    },
+                    OnFailure: () => { Console.WriteLine("Connection failure"); },
+                    cancellationToken: cancellationToken);
+            }
+            catch (TaskCanceledException)
+            {
+                Console.WriteLine("Update was canceled.");
             }
         }
 }
