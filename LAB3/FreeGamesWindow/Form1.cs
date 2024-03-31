@@ -191,20 +191,41 @@ public partial class Form1 : Form
         {
             try
             {
-                List<string> selectedCategories = new List<string>();
-                for (int i = 0; i < _gameCategories.Count; i++)
+                List<string> selectedCategories = _categoryCheckBoxes
+                    .Where(cb => cb.Checked && _gameCategories.Contains(cb.Text.ToLower()))
+                    .Select(cb => cb.Text.ToLower())
+                    .ToList();
+
+                List<string> selectedPlatforms = _platformCheckBoxes
+                    .Where(cb => cb.Checked && _platforms.Contains(cb.Text.ToUpper()))
+                    .Select(cb => cb.Text.ToUpper())
+                    .ToList();
+
+                for (int i = 0; i < _platforms.Count; i++)
                 {
-                    if (_categoryCheckBoxes[i].Checked)
+                    if (_platformCheckBoxes[i].Checked)
                     {
-                        selectedCategories.Add(_gameCategories[i].ToLower());
+                        if (i == 0)
+                        {
+                            selectedPlatforms.Add("PC (Windows)".ToLower());
+                        }
+                        else
+                        {
+                            selectedPlatforms.Add("Web Browser".ToLower());
+                        }
                     }
                 }
-                
+
                 IQueryable<Game> query = _gamesDb.Games.AsQueryable();
 
                 if (selectedCategories.Any())
                 {
                     query = query.Where(g => selectedCategories.Contains(g.Genre.ToLower()));
+                }
+
+                if (selectedPlatforms.Any())
+                {
+                    query = query.Where(g => selectedPlatforms.Contains(g.Platform.ToLower()));
                 }
 
                 List<Game> games = query.ToList();
