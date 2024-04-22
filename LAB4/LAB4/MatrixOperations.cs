@@ -45,20 +45,36 @@ namespace LAB4
             int[,] result = new int[size, size];
             Thread[] threads = new Thread[threadCount];
             int partSize = size / threadCount;
-            for (int t = 0; t < threadCount; t++)
+
+            for (int i = 0; i < threadCount; i++)
             {
-                
-            }
-            
-            for (int y = 0; y < size; y++)
-            {
-                for (int x = 0; x < size; x++)
+                int startColumn = i * partSize;
+                int endColumn = (i == threadCount - 1) ? size : (i + 1) * partSize;
+
+                threads[i] = new Thread((object obj) =>
                 {
-                    for (int i = 0; i < size; i++)
+                    int[] range = (int[])obj;
+                    int start = range[0];
+                    int end = range[1];
+
+                    for (int y = 0; y < size; y++)
                     {
-                        result[x, y] += a[i, y] * b[x, i];
+                        for (int x = start; x < end; x++)
+                        {
+                            for (int k = 0; k < size; k++)
+                            {
+                                result[x, y] += a[k, y] * b[x, k];
+                            }
+                        }
                     }
-                }
+                });
+
+                threads[i].Start(new int[] { startColumn, endColumn });
+            }
+
+            foreach (var thread in threads)
+            {
+                thread.Join();
             }
 
             return result;
