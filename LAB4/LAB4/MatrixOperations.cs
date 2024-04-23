@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace LAB4
 {
@@ -76,6 +77,32 @@ namespace LAB4
             {
                 thread.Join();
             }
+
+            return result;
+        }
+
+        public static int[,] MultiplicationParallel(int[,] a, int[,] b, int threadCount)
+        {
+            int size = (int)Math.Sqrt(a.Length);
+            int[,] result = new int[size, size];
+            int partSize = size / threadCount;
+
+            Parallel.For(0, threadCount, i =>
+            {
+                int startColumn = i * partSize;
+                int endColumn = (i == threadCount - 1) ? size : (i + 1) * partSize;
+
+                for (int y = 0; y < size; y++)
+                {
+                    for (int x = startColumn; x < endColumn; x++)
+                    {
+                        for (int k = 0; k < size; k++)
+                        {
+                            result[x, y] += a[k, y] * b[x, k];
+                        }
+                    }
+                }
+            });
 
             return result;
         }

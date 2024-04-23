@@ -13,16 +13,12 @@ namespace LAB4
             watch.Stop();
             long elapsedMs = watch.ElapsedMilliseconds;
             Console.WriteLine($"Watek [1]: {elapsedMs} ms");
-            for (int i = 2; i <= 16; i++)
+            for (int i = 2; i <= 12; i++)
             {
-                CalculateMatrix(a, b, i);
+                //CalculateMatrix(a, b, i);
+                CalculateMatrixParallel(a, b, i);
             }
-
-            /*Console.WriteLine(MatrixOperations.MatrixToString(a));
-            Console.WriteLine(MatrixOperations.MatrixToString(b));
-            Console.WriteLine(MatrixOperations.MatrixToString(result));
-            Console.WriteLine(MatrixOperations.MatrixToString(resultThread));*/
-
+            
         }
 
         private static void CalculateMatrix(int[,] a, int[,] b, int threads)
@@ -32,6 +28,15 @@ namespace LAB4
             watch.Stop();
             long elapsedMs = watch.ElapsedMilliseconds;
             Console.WriteLine($"Watki [{threads}]: {elapsedMs} ms");
+        }
+        
+        private static void CalculateMatrixParallel(int[,] a, int[,] b, int threads)
+        {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+            MatrixOperations.MultiplicationParallel(a, b, threads);
+            watch.Stop();
+            long elapsedMs = watch.ElapsedMilliseconds;
+            Console.WriteLine($"Parallel Watki [{threads}]: {elapsedMs} ms");
         }
     }
 }
