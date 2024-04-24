@@ -13,10 +13,10 @@ namespace LAB4
             watch.Stop();
             long elapsedMs = watch.ElapsedMilliseconds;
             Console.WriteLine($"Watek [1]: {elapsedMs} ms");
-            for (int i = 2; i <= 12; i++)
+            for (int i = 2; i <= 16; i++)
             {
-                //CalculateMatrix(a, b, i);
-                CalculateMatrixParallel(a, b, i);
+                CalculateMatrix(a, b, i);
+                //CalculateMatrixParallel(a, b, i);
             }
             
         }

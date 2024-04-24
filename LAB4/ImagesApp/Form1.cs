@@ -13,7 +13,7 @@ namespace ImagesApp
 {
     public partial class Form1 : Form
     {
-        private Bitmap orginalBitmap;
+        private volatile Bitmap orginalBitmap;
         private PictureBox[] images;
 
         public Form1()
@@ -40,24 +40,29 @@ namespace ImagesApp
 
         private void start_Click(object sender, EventArgs e)
         {
-            Parallel.For(0, 4, i =>
+            Parallel.Invoke(() =>
             {
-                images[i].SizeMode = PictureBoxSizeMode.Zoom;
-                Bitmap clone = orginalBitmap.Clone() as Bitmap;
-                switch (i)
+                for (int i = 0; i < images.Length; i++)
                 {
-                   case 0:
-                       images[i].Image = ImageFilter.Negative(clone);
-                       break;
-                   case 1:
-                       images[i].Image = ImageFilter.Sepia(clone);
-                       break;
-                   case 2:
-                       images[i].Image = ImageFilter.AdjustContrast(clone, 5f);
-                       break;
-                   case 3:
-                       images[i].Image = ImageFilter.Brighten(clone, 10);
-                       break;
+                    images[i].SizeMode = PictureBoxSizeMode.Zoom;
+                    Bitmap clone = orginalBitmap.Clone() as Bitmap;
+                    switch (i)
+                    {
+                        case 0:
+                            images[i].Image = ImageFilter.Negative(clone);
+                            break;
+                        case 1:
+                            images[i].Image = ImageFilter.Sepia(clone);
+                            break;
+                        case 2:
+                            //images[i].Image = ImageFilter.AdjustContrast(clone, 10f);
+                            images[i].Image = ImageFilter.Mirror(clone, MirrorMode.HORIZONTAL);
+                            break;
+                        case 3:
+                            //images[i].Image = ImageFilter.Brighten(clone, 10);
+                            images[i].Image = ImageFilter.Mirror(clone, MirrorMode.VERTICAL);
+                            break;
+                    }
                 }
             });
         }
