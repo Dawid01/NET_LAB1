@@ -13,13 +13,13 @@ namespace ImagesApp
 {
     public partial class Form1 : Form
     {
-        private volatile Bitmap orginalBitmap;
-        private PictureBox[] images;
+        private volatile Bitmap _orginalBitmap;
+        private PictureBox[] _images;
 
         public Form1()
         {
             InitializeComponent();
-            images = new[]
+            _images = new[]
             {
                 image1, image2, image3, image4
             };
@@ -32,9 +32,9 @@ namespace ImagesApp
             string file = openFileDialog1.FileName;
             if (file != null)
             {
-                orginalBitmap = new Bitmap(file);
+                _orginalBitmap = new Bitmap(file);
                 orginal.SizeMode = PictureBoxSizeMode.Zoom;
-                orginal.Image = orginalBitmap;
+                orginal.Image = _orginalBitmap;
             }
         }
 
@@ -42,25 +42,22 @@ namespace ImagesApp
         {
             Parallel.Invoke(() =>
             {
-                for (int i = 0; i < images.Length; i++)
+                for (int i = 0; i < _images.Length; i++)
                 {
-                    images[i].SizeMode = PictureBoxSizeMode.Zoom;
-                    Bitmap clone = orginalBitmap.Clone() as Bitmap;
+                    _images[i].SizeMode = PictureBoxSizeMode.Zoom;
                     switch (i)
                     {
                         case 0:
-                            images[i].Image = ImageFilter.Negative(clone);
+                            _images[i].Image = ImageFilter.Negative(_orginalBitmap);
                             break;
                         case 1:
-                            images[i].Image = ImageFilter.Sepia(clone);
+                            _images[i].Image = ImageFilter.Sepia(_orginalBitmap);
                             break;
                         case 2:
-                            //images[i].Image = ImageFilter.AdjustContrast(clone, 10f);
-                            images[i].Image = ImageFilter.Mirror(clone, MirrorMode.HORIZONTAL);
+                            _images[i].Image = ImageFilter.Mirror(_orginalBitmap, MirrorMode.HORIZONTAL);
                             break;
                         case 3:
-                            //images[i].Image = ImageFilter.Brighten(clone, 10);
-                            images[i].Image = ImageFilter.Mirror(clone, MirrorMode.VERTICAL);
+                            _images[i].Image = ImageFilter.Mirror(_orginalBitmap, MirrorMode.VERTICAL);
                             break;
                     }
                 }

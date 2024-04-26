@@ -6,8 +6,9 @@ namespace LAB4
     {
         public static void Main(string[] args)
         {
-            int[,] a =  MatrixOperations.GenerateMatrix(1000, 1);
-            int[,] b =  MatrixOperations.GenerateMatrix(1000, 2);
+            int size = 1000;
+            int[,] a =  MatrixOperations.GenerateMatrix(size, 1);
+            int[,] b =  MatrixOperations.GenerateMatrix(size, 2);
             var watch = System.Diagnostics.Stopwatch.StartNew();
             MatrixOperations.Multiplication(a, b);
             watch.Stop();
