@@ -1,0 +1,90 @@
+﻿@page "/games/details"
+@inject BlazorAppGames.Data.ApplicationDbContext DB
+@using BlazorAppGames.Components.Models
+@inject NavigationManager NavigationManager
+@using Microsoft.EntityFrameworkCore
+@rendermode InteractiveServer
+
+<h1>Game Details</h1>
+
+<div class="card">
+    <div class="card-body">
+        @if (game is null)
+        {
+            <p><em>Loading...</em></p>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="@game.Image" alt="@game.Title" class="img-fluid" />
+                </div>
+                <div class="col-md-8">
+                    <h2>@game.Title</h2>
+                    <p>@game.Description</p>
+                    <dl class="row">
+                        <dt class="col-sm-3">Release Date</dt>
+                        <dd class="col-sm-9">@game.RelaseDate?.ToString("dd/MM/yyyy")</dd>
+                        <dt class="col-sm-3">Developer</dt>
+                        <dd class="col-sm-9">@game.Developer</dd>
+                        <dt class="col-sm-3">Rate</dt>
+                        <dd class="col-sm-9">@game.Rate?.ToString("0.0")</dd>
+                        @if (!string.IsNullOrEmpty(game.YTUrl))
+                        {
+                            <dt class="col-sm-3">YouTube Video</dt>
+                            <dd class="col-sm-9">
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <iframe class="embed-responsive-item" src="@game.YTUrl" allowfullscreen></iframe>
+                                </div>
+                            </dd>
+                        }
+                    </dl>
+
+                    <div>
+                        <EditForm Model="@game" OnSubmit="@UpdateRating">
+                            <label for="gameRating">Rate:</label>
+                            <InputNumber id="gameRating" min="1" max="10" @bind-Value="@Rating" />
+                            <button type="submit" class="btn btn-success mt-2">Rate</button>
+                        </EditForm>
+                        <a href="@($"/games/edit?id={game.Id}")" class="btn btn-primary">Edit</a>
+                        <a href="@($"/games")" class="btn btn-secondary">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+@code {
+    Game? game;
+
+    [SupplyParameterFromQuery]
+    public int Id { get; set; }
+
+    bool showRateModal = false;
+
+    [SupplyParameterFromForm]
+    public int Rating { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        game = await DB.Game.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (game is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+
+
+    private async Task UpdateRating()
+    {
+        game.Rate += (float?)Rating;
+        game.NumberOfRates++;
+
+        await DB.SaveChangesAsync();
+        NavigationManager.NavigateTo("/games");
+        StateHasChanged();
+    }
+}
