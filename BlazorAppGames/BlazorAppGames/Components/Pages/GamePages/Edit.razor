@@ -18,7 +18,7 @@ else
 {
     <div class="row">
         <div class="col-md-4">
-            <EditForm method="post" Model="Game" OnValidSubmit="UpdateGame" FormName="edit" Enhance>
+            <EditForm method="post" Model="Game" OnValidSubmit="@UpdateGame" FormName="edit" Enhance>
                 <DataAnnotationsValidator />
                 <ValidationSummary />
                 <input type="hidden" name="Game.Id" value="@Game.Id" />

@@ -17,7 +17,7 @@
     <PropertyColumn Property="game => game.Title" />
     <PropertyColumn Property="game => game.Description.Length > 50 ?  (game.Description.Substring(0, 50)) : game.Description" />
     <PropertyColumn Property="game => game.RelaseDate" />
-    <PropertyColumn Property="game => game.Rate / Math.Max((int)game.NumberOfRates, 1)" />
+    <PropertyColumn Property="game => (game.Rate ?? 0) / Math.Max((game.NumberOfRates ?? 1), 1)" />
 
     <TemplateColumn Context="game">
         <a href="@($"games/edit?id={game.Id}")">Edit</a> |
