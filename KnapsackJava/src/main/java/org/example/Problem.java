@@ -1,29 +1,36 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 public class Problem {
-    public List<Item> itemList = new ArrayList<>();
-    public List<Item> sortedItemList;
+    public List<Item> itemList;
+    private List<Item> sortedItemList;
 
     public Problem(int n, int seed, int lowerBound, int upperBound) {
-
         if (lowerBound > upperBound) {
             throw new IllegalArgumentException("Upper bound must be equal or greater than lower bound.");
         }
 
+        itemList = new ArrayList<>();
         Random rand = new Random(seed);
+
         for (int i = 0; i < n; i++) {
-            Item item = new Item(i, rand.nextInt(upperBound - lowerBound + 1) + lowerBound, rand.nextInt(upperBound - lowerBound + 1) + lowerBound);
-            itemList.add(item);
+            int value = getRandomValue(rand, lowerBound, upperBound);
+            int weight = getRandomValue(rand, lowerBound, upperBound);
+            itemList.add(new Item(i, value, weight));
         }
+    }
+
+    private int getRandomValue(Random rand, int lowerBound, int upperBound) {
+        return rand.nextInt(upperBound - lowerBound + 1) + lowerBound;
     }
 
     public Result solve(int capacity) {
         sortedItemList = new ArrayList<>(itemList);
-        sortedItemList.sort((Item o1, Item o2) -> Double.compare(o2.getRatio(), o1.getRatio()));
+        sortedItemList.sort((o1, o2) -> Double.compare(o2.getRatio(), o1.getRatio()));
 
         List<Integer> selectedItems = new ArrayList<>();
         int totalValue = 0;
