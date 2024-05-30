@@ -1,28 +1,30 @@
 package org.example;
+
 import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProblemTest {
+
     @Test
-    public void test1() {
+    void testNonEmptySelectedItems() {
         Problem problem = new Problem(3, 1, 1, 10);
         Result result = problem.solve(10);
 
-        assertFalse(result.selectedItems.isEmpty());
+        assertFalse(result.selectedItems.isEmpty(), "The selected items should not be empty when capacity allows for items to be added.");
     }
 
     @Test
-    public void test2() {
+    void testNoSelectedItemsWithLowCapacity() {
         Problem problem = new Problem(3, 1, 1, 10);
         Result result = problem.solve(1);
 
-        assertEquals(0, result.selectedItems.size());
+        assertEquals(0, result.selectedItems.size(), "The selected items should be empty when capacity is too low to include any items.");
     }
 
     @Test
-    public void test3() {
+    void testItemValueAndWeightWithinBounds() {
         int n = 3;
         int seed = 1;
         int lowerBound = 1;
@@ -31,19 +33,22 @@ class ProblemTest {
         List<Item> items = problem.itemList;
 
         for (Item item : items) {
-            assertTrue(item.getValue() >= lowerBound && item.getValue() <= upperBound);
-            assertTrue(item.getWeight() >= lowerBound && item.getWeight() <= upperBound);
+            assertTrue(item.getValue() >= lowerBound && item.getValue() <= upperBound,
+                    "Item value should be within the specified bounds.");
+            assertTrue(item.getWeight() >= lowerBound && item.getWeight() <= upperBound,
+                    "Item weight should be within the specified bounds.");
         }
     }
 
+
     @Test
-    public void test4() { //
+    void testExpectedSelectedItems() {
         Problem problem = new Problem(5, 5, 5, 15);
         int capacity = 30;
         Result result = problem.solve(capacity);
         int[] actual = result.selectedItems.stream().mapToInt(Integer::intValue).toArray();
         int[] expected = {4, 4, 0};
 
-        assertArrayEquals(expected, actual);
+        assertArrayEquals(expected, actual, "The selected items should match the expected selection based on the given capacity and item list.");
     }
 }
